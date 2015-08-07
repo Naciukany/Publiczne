@@ -1,16 +1,17 @@
-command /helpop <text>:
-    description: BY MAXHARD
-    usage: /helpop <message>
-    aliases: /helpadmin
-    permission: gracz.helpop
-    trigger:
-        loop all players:
-            loop-player has permission "admin.helpop":
-                message "&8[&9Pomocy&8] &a%player%&f: %arg%" to loop-player
-                set {helpop.%player%} to false
-                        wait 1 minute
+options:
+        spamhelpop: 1
+command /helpop [<text>]:
+        trigger:
+                if arg 1 is set:
+                        send "&9HelpOP &c%player%: &f%arg%" to all players
+                        send "&7Twoja wiadomosc zostala wyslana na helpop." to player
+                        set {helpop.%player%} to false
+                        wait {@spamhelpop} minute
                         set {helpop.%player%} to true
+                if arg 1 is not set:
+                        send "&8Prawidlowe uzycie /helpop <wiadomosc>"
+ 
 on command "/helpop":
         if {helpop.%player%} is false:
                 cancel event
-                send "{@tag} &cNa helpop mozna pisac co 1 minute."
+                send "&cNa helpop mozna pisac co 1 minute."
