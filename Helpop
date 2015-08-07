@@ -1,0 +1,26 @@
+options:
+        spamhelpop: 1
+        tag: &8[&4MH&8]
+command /helpop [<text>]:
+        trigger:
+                if arg 1 is set:
+                        send "{@tag} &8[&9Problem&8] &a%player%: &f%arg%" to all ops
+                        send "{@tag} &7Twoja wiadomosc zostala wyslana na helpop." to player
+                        set {helpop.%player%} to false
+                        wait {@spamhelpop} minute
+                        set {helpop.%player%} to true
+                if arg 1 is not set:
+                        send "{@tag} &8Prawidlowe uzycie /helpop <wiadomosc>"
+ 
+on command "/helpop":
+        if {helpop.%player%} is false:
+                cancel event
+                send "{@tag} &cNa helpop mozna pisac co 1 minute."
+              
+# Usuń swoje On join skrypt bo sie baguje #
+
+on join:
+        set join message to "{@tag} &9%player% Dolacza do gry."
+#
+on quit:
+        set leave message to "&9%player% Wychodzi z gry."
