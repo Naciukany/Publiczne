@@ -7,3 +7,10 @@ command /helpop <text>:
         loop all players:
             loop-player has permission "admin.helpop":
                 message "&8[&9Pomocy&8] &a%player%&f: %arg%" to loop-player
+                set {helpop.%player%} to false
+                        wait 1 minute
+                        set {helpop.%player%} to true
+on command "/helpop":
+        if {helpop.%player%} is false:
+                cancel event
+                send "{@tag} &cNa helpop mozna pisac co 1 minute."
