@@ -20,7 +20,7 @@ on command "/helpop":
 # Usuń swoje On join skrypt bo sie baguje #
 
 on join:
-        set join message to "{@tag} &9%player% Dolacza do gry."
+        set join message to ""
 #
 on quit:
-        set leave message to "&9%player% Wychodzi z gry."
+        set leave message to ""
