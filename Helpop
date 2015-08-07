@@ -1,4 +1,9 @@
-on join:
-    set join message to "&7&l%player% &f&l> &a+ &f&l<"
-on quit:
-    set leave message to ""
+command /helpop <text>:
+    description: BY MAXHARD
+    usage: /helpop <message>
+    aliases: /helpadmin
+    permission: gracz.helpop
+    trigger:
+        loop all players:
+            loop-player has permission "admin.helpop":
+                message "&8[&9Pomocy&8] &a%player%&f: %arg%" to loop-player
